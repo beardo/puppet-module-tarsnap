@@ -13,11 +13,18 @@ define tarsnap::backup($ensure=present,
     mode => 744,
   }
 
+  file { "/var/log/backup":
+    ensure => present,
+    owner => root,
+    group => root,
+    mode => 600,
+  }
+
   cron { "tarsnap-backup-${name}":
     ensure => $ensure,
-    command => $backup_script,
+    command => "$backup_script 1> /var/log/backup 2> /var/log/backup",
     hour => $hour,
     minute => $minute,
-    require => [File[$backup_script], File[$tarsnap::key_file]],
+    require => [File[$backup_script], File[$tarsnap::key_file], File["/var/log/backup"]],
   }
 }
