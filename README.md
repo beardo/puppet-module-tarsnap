@@ -52,20 +52,3 @@ The commands, directories, and files arguments are  Puppet hashes:
       hour => '*',
       minute => 15,
     }
-
-To prune old backups use the `tarsnap::prune` resource with the same
-name argument as you used for the backup you want to prune:
-
-    tarsnap::prune { "web-resources":
-      hour => 1,
-      minute => 45,
-    }
-
-The tarsnap pruner keeps the following number of backups:
-
-* today: all
-* yesterday: up to 12
-* 2 days ago: up to 6
-* 3-6 days ago: up to 2 per day
-* 7-30 days ago: up to 1 per day
-* more than 30 days ago: up to 1 per month
