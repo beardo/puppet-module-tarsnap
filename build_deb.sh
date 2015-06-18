@@ -1,14 +1,13 @@
 #!/bin/sh
 
 # Dependencies:
-#   apt-get install sudo apt-get install ruby-dev gcc
-#   gem install fpm
-
-set -e
+#   apt-get install build-essential debhelper fakeroot e2fslibs-dev libbz2-dev zlib1g-dev libssl-dev libattr1-dev libacl1-dev
 
 version=$1
 url="https://www.tarsnap.com/download/tarsnap-autoconf-${version}.tgz"
 
 wget -q -O - $url | tar -xz
-fpm -s dir -t deb -n tarsnap tarsnap-autoconf-1.0.35/
+cd "tarsnap-autoconf-${version}"
+ln -s pkg/debian . && dpkg-buildpackage
+cd ..
 rm -rf "tarsnap-autoconf-${version}"
