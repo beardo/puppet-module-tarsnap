@@ -1,4 +1,4 @@
-class tarsnap($ensure = latest, $key_file = '/etc/tarsnap.key') {
+class tarsnap($ensure = latest) {
 
   file { "/tmp/tarsnap_1.0.35_amd64.deb":
     owner   => root,
