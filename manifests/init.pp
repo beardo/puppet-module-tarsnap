@@ -3,7 +3,7 @@ class tarsnap($ensure = latest, $key_file = '/etc/tarsnap.key') {
   file { "/tmp/tarsnap_1.0.35_amd64.deb":
     owner   => root,
     group   => root,
-    mode    => 644,
+    mode    => "644",
     ensure  => present,
     source  => "puppet:///modules/tarsnap/pkg/tarsnap_1.0.35_amd64.deb",
   }
